@@ -1,29 +1,22 @@
 package org.example;
 
-import java.util.List;
+import java.math.BigDecimal;
 
 public class Main {
     public static void main(String[] args) {
-
-        /*
-        Double paaoma = 20000.0;
-        int vuosikorko = 10;
+        BigDecimal paaoma = new BigDecimal(20000);
+        BigDecimal vuosikorko = new BigDecimal(10);
         int maksuaika = 24;
-        int maksuvali = 1;
+        int maksuvali = 3;
 
-        List<LainanMaksuEra> erat = LainanTakaisinMaksaja.laskeEratTasalyhennyksessa(paaoma, vuosikorko, maksuaika, maksuvali);
+        LainanMaksuSuunnitelma suunnitelma = LainanTakaisinMaksuLaskuri.laskeEratTasalyhennyksessa(paaoma, vuosikorko, maksuaika, maksuvali);
 
-        for (LainanMaksuEra era : erat) {
-            System.out.println(era.toString());
+        for (LainanMaksuEra era : suunnitelma.getLainanMaksuErat()) {
+            System.out.println(era);
         }
-         */
-        Double paaoma = 20000.0;
-        int vuosikorko = 10;
-        int maksuaika = 24;
-        int maksuvali = 1;
 
-        LainanMaksuSuunnitelma suunnitelma = LainanTakaisinMaksaja.laskeEratTasalyhennyksessa(paaoma, vuosikorko, maksuaika, maksuvali);
-
-        System.out.println(suunnitelma);
+        System.out.println("lainapaaoma: " + suunnitelma.getLainaPaaoma());
+        System.out.println("summa: " + suunnitelma.getSumma());
+        System.out.println("kumulatiivinen korko: " + suunnitelma.getKumulatiivinenKorko());
     }
 }

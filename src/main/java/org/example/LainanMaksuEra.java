@@ -11,9 +11,6 @@ public class LainanMaksuEra {
     private BigDecimal summa;
     private Integer lyhennyksenLkm;
 
-    public LainanMaksuEra() {
-    }
-
     public LainanMaksuEra(int kuukausi, BigDecimal lainaPaaoma, BigDecimal lainaPaaomanLyhennysEra,
                           BigDecimal koronOsuus, BigDecimal summa, Integer lyhennyksenLkm) {
         this.kuukausi = kuukausi;
@@ -28,48 +25,24 @@ public class LainanMaksuEra {
         return kuukausi;
     }
 
-    public void setKuukausi(int kuukausi) {
-        this.kuukausi = kuukausi;
-    }
-
     public BigDecimal getLainaPaaoma() {
         return lainaPaaoma;
-    }
-
-    public void setLainaPaaoma(BigDecimal lainaPaaoma) {
-        this.lainaPaaoma = lainaPaaoma;
     }
 
     public BigDecimal getLainaPaaomanLyhennysEra() {
         return lainaPaaomanLyhennysEra;
     }
 
-    public void setLainaPaaomanLyhennysEra(BigDecimal lainaPaaomanLyhennysEra) {
-        this.lainaPaaomanLyhennysEra = lainaPaaomanLyhennysEra;
-    }
-
     public BigDecimal getKoronOsuus() {
         return koronOsuus;
-    }
-
-    public void setKoronOsuus(BigDecimal koronOsuus) {
-        this.koronOsuus = koronOsuus;
     }
 
     public BigDecimal getSumma() {
         return summa;
     }
 
-    public void setSumma(BigDecimal summa) {
-        this.summa = summa;
-    }
-
     public Integer getLyhennyksenLkm() {
         return lyhennyksenLkm;
-    }
-
-    public void setLyhennyksenLkm(Integer lyhennyksenLkm) {
-        this.lyhennyksenLkm = lyhennyksenLkm;
     }
 
     @Override
