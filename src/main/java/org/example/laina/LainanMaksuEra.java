@@ -9,7 +9,7 @@ public class LainanMaksuEra implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private final UUID id;
+    private UUID id;
     private int kuukausi;
     private BigDecimal lainaPaaoma;
     private BigDecimal lainaPaaomanLyhennysEra;
