@@ -65,7 +65,6 @@ public class LainaLaskuriImpl implements LainaLaskuri {
         BigDecimal lainaPaaoma = alkuLainaPaaoma;
         BigDecimal kumulatiivinenKorko = BigDecimal.ZERO;
         List<LainanMaksuEra> erat = new ArrayList<>();
-
         BigDecimal tasaEra = laskeTasaEraKuukaudelle(alkuLainaPaaoma, vuosiKorko, lainanMaksuAikaKuukausina);
 
         for (int i = 0; i < lainanMaksuAikaKuukausina; i++) {
