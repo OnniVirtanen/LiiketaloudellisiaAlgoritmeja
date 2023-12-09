@@ -1,4 +1,4 @@
-package org.example.valueobject;
+package org.example.laina.valueobject;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
