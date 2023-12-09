@@ -1,17 +1,17 @@
-package org.example;
+package org.example.valueobject;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class LainanMaksuSuunnitelma {
+public class LainanMaksuSuunnitelma implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private List<LainanMaksuEra> lainanMaksuErat;
     private BigDecimal lainaPaaoma;
     private BigDecimal kumulatiivinenKorko;
     private BigDecimal summa;
-
-    public LainanMaksuSuunnitelma() {
-    }
 
     public LainanMaksuSuunnitelma(List<LainanMaksuEra> lainanMaksuErat, BigDecimal lainaPaaoma,
                                   BigDecimal kumulatiivinenKorko, BigDecimal summa) {

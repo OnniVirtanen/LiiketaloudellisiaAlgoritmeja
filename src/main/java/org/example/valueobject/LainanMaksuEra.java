@@ -1,8 +1,11 @@
-package org.example;
+package org.example.valueobject;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class LainanMaksuEra {
+public class LainanMaksuEra implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private int kuukausi;
     private BigDecimal lainaPaaoma;
