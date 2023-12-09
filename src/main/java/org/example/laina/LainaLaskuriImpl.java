@@ -1,12 +1,9 @@
 package org.example.laina;
 
-import org.example.laina.valueobject.LainanMaksuEra;
-import org.example.laina.valueobject.LainanMaksuSuunnitelma;
-import org.example.laina.valueobject.VuosiKorko;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class LainaLaskuriImpl implements LainaLaskuri {
 
@@ -40,6 +37,7 @@ public class LainaLaskuriImpl implements LainaLaskuri {
             int kuukausi = (lainanMaksuAikaKuukausina / maksuerienMaara) * (i + 1);
 
             LainanMaksuEra era = new LainanMaksuEra(
+                    UUID.randomUUID(),
                     kuukausi,
                     alkuLainaPaaoma.setScale(RAHAN_ESITYS_TARKKUUS, BigDecimal.ROUND_HALF_UP),
                     lainapaaomanLyhennys.setScale(RAHAN_ESITYS_TARKKUUS, BigDecimal.ROUND_HALF_UP),
@@ -51,6 +49,7 @@ public class LainaLaskuriImpl implements LainaLaskuri {
             lainaPaaoma = lainaPaaoma.subtract(lainapaaomanLyhennys);
         }
         LainanMaksuSuunnitelma suunnitelma = new LainanMaksuSuunnitelma(
+                UUID.randomUUID(),
                 erat,
                 alkuLainaPaaoma.setScale(RAHAN_ESITYS_TARKKUUS, BigDecimal.ROUND_HALF_UP),
                 kumulatiivinenKorko.setScale(RAHAN_ESITYS_TARKKUUS, BigDecimal.ROUND_HALF_UP),
@@ -76,6 +75,7 @@ public class LainaLaskuriImpl implements LainaLaskuri {
             BigDecimal lainapaaomanLyhennys = tasaEra.subtract(korko);
 
             LainanMaksuEra era = new LainanMaksuEra(
+                    UUID.randomUUID(),
                     i + 1,
                     alkuLainaPaaoma.setScale(RAHAN_ESITYS_TARKKUUS, BigDecimal.ROUND_HALF_UP),
                     lainapaaomanLyhennys.setScale(RAHAN_ESITYS_TARKKUUS, BigDecimal.ROUND_HALF_UP),
@@ -87,6 +87,7 @@ public class LainaLaskuriImpl implements LainaLaskuri {
             lainaPaaoma = lainaPaaoma.subtract(lainapaaomanLyhennys);
         }
         LainanMaksuSuunnitelma suunnitelma = new LainanMaksuSuunnitelma(
+                UUID.randomUUID(),
                 erat,
                 alkuLainaPaaoma.setScale(RAHAN_ESITYS_TARKKUUS, BigDecimal.ROUND_HALF_UP),
                 kumulatiivinenKorko.setScale(RAHAN_ESITYS_TARKKUUS, BigDecimal.ROUND_HALF_UP),

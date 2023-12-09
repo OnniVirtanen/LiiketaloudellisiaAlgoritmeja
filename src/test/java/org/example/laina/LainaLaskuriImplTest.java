@@ -1,8 +1,5 @@
 package org.example.laina;
 
-import org.example.laina.valueobject.LainanMaksuEra;
-import org.example.laina.valueobject.LainanMaksuSuunnitelma;
-import org.example.laina.valueobject.VuosiKorko;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;

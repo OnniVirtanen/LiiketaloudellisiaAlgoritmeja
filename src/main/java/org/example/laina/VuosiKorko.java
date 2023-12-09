@@ -1,6 +1,4 @@
-package org.example.laina.valueobject;
-
-import org.example.laina.KorkoUtil;
+package org.example.laina;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
