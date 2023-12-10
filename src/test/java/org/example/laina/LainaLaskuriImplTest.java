@@ -16,14 +16,14 @@ class LainaLaskuriImplTest {
         VuosiKorko korko = new VuosiKorko(10);
         int maksuaika = 24;
 
-        LainaLaskuri lainaLaskuri = new LainaLaskuriImpl();
+        LainaLaskuri lainaLaskuri = LainaLaskuriImpl.getInstance();
 
         LainanMaksuSuunnitelma suunnitelma = lainaLaskuri.teeLainanMaksuSuunnitelmaTasaEraLyhennyksella(
                 paaoma, korko, maksuaika);
 
-        BigDecimal odotettuSumma = new BigDecimal(22149.56).setScale(2, BigDecimal.ROUND_HALF_UP);
-        BigDecimal odotettuKumulatiivinenKorko = new BigDecimal(2149.56).setScale(2, BigDecimal.ROUND_HALF_UP);
-        BigDecimal odotettuLainaPaaoma = new BigDecimal(20000).setScale(2, BigDecimal.ROUND_HALF_UP);
+        BigDecimal odotettuSumma = new BigDecimal("22149.56").setScale(2, BigDecimal.ROUND_HALF_UP);
+        BigDecimal odotettuKumulatiivinenKorko = new BigDecimal("2149.56").setScale(2, BigDecimal.ROUND_HALF_UP);
+        BigDecimal odotettuLainaPaaoma = new BigDecimal("20000").setScale(2, BigDecimal.ROUND_HALF_UP);
         List<BigDecimal> lainaPaaomanLyhennykset = suunnitelma.getLainanMaksuErat().stream()
                 .map(LainanMaksuEra::getLainaPaaomanLyhennysEra).collect(Collectors.toList());
         boolean onEriSummiaLainaPaaomanLyhennyksissa = lainaPaaomanLyhennykset.stream().distinct().count() > 1;
@@ -45,13 +45,13 @@ class LainaLaskuriImplTest {
         int maksuaika = 24;
         int maksuvali = 1;
 
-        LainaLaskuri lainaLaskuri = new LainaLaskuriImpl();
+        LainaLaskuri lainaLaskuri = LainaLaskuriImpl.getInstance();
 
         LainanMaksuSuunnitelma suunnitelma = lainaLaskuri.teeLainanMaksuSuunnitelmaTasaLyhennyksella(
                 paaoma, korko, maksuaika, maksuvali);
 
-        BigDecimal odotettuSumma = new BigDecimal(22083.33).setScale(2, BigDecimal.ROUND_HALF_UP);
-        BigDecimal odotettuKumulatiivinenKorko = new BigDecimal(2083.33).setScale(2, BigDecimal.ROUND_HALF_UP);
+        BigDecimal odotettuSumma = new BigDecimal("22083.33").setScale(2, BigDecimal.ROUND_HALF_UP);
+        BigDecimal odotettuKumulatiivinenKorko = new BigDecimal("2083.33").setScale(2, BigDecimal.ROUND_HALF_UP);
         BigDecimal odotettuLainaPaaoma = new BigDecimal(20000).setScale(2, BigDecimal.ROUND_HALF_UP);
         List<BigDecimal> lainaPaaomanLyhennykset = suunnitelma.getLainanMaksuErat().stream()
                 .map(LainanMaksuEra::getLainaPaaomanLyhennysEra).collect(Collectors.toList());

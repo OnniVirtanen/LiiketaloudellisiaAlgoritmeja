@@ -1,21 +1,27 @@
 package org.example.laina;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public class LainaLaskuriImpl implements LainaLaskuri {
 
-    /**
-     * Monen desimaalin tarkkuudella välivaiheissa käytetään liukulukuja. Double on noin 15 desimaalin tarkkuudella.
-     */
-    private static final int N_DESIMAALIN_TARKKUUS = 32;
+    private static final int RAHAN_ESITYS_TARKKUUS_DES = 2;
 
-    /**
-     * Monen desimaalin tarkkuudella rahaa esitetään.
-     */
-    private static final int RAHAN_ESITYS_TARKKUUS = 2;
+    private static LainaLaskuriImpl single_instance = null;
+
+    public static synchronized LainaLaskuriImpl getInstance() {
+        if (single_instance == null)
+            single_instance = new LainaLaskuriImpl();
+        return single_instance;
+    }
+
+    // because class is singleton
+    private LainaLaskuriImpl() {
+
+    }
 
     @Override
     public LainanMaksuSuunnitelma teeLainanMaksuSuunnitelmaTasaLyhennyksella(BigDecimal alkuLainaPaaoma,
@@ -39,10 +45,10 @@ public class LainaLaskuriImpl implements LainaLaskuri {
             LainanMaksuEra era = new LainanMaksuEra(
                     UUID.randomUUID(),
                     kuukausi,
-                    alkuLainaPaaoma.setScale(RAHAN_ESITYS_TARKKUUS, BigDecimal.ROUND_HALF_UP),
-                    lainapaaomanLyhennys.setScale(RAHAN_ESITYS_TARKKUUS, BigDecimal.ROUND_HALF_UP),
-                    korko.setScale(RAHAN_ESITYS_TARKKUUS, BigDecimal.ROUND_HALF_UP),
-                    maksuera.setScale(RAHAN_ESITYS_TARKKUUS, BigDecimal.ROUND_HALF_UP),
+                    alkuLainaPaaoma.setScale(RAHAN_ESITYS_TARKKUUS_DES, BigDecimal.ROUND_HALF_UP),
+                    lainapaaomanLyhennys.setScale(RAHAN_ESITYS_TARKKUUS_DES, BigDecimal.ROUND_HALF_UP),
+                    korko.setScale(RAHAN_ESITYS_TARKKUUS_DES, BigDecimal.ROUND_HALF_UP),
+                    maksuera.setScale(RAHAN_ESITYS_TARKKUUS_DES, BigDecimal.ROUND_HALF_UP),
                     lyhennyksenLkm
             );
             erat.add(era);
@@ -51,9 +57,9 @@ public class LainaLaskuriImpl implements LainaLaskuri {
         LainanMaksuSuunnitelma suunnitelma = new LainanMaksuSuunnitelma(
                 UUID.randomUUID(),
                 erat,
-                alkuLainaPaaoma.setScale(RAHAN_ESITYS_TARKKUUS, BigDecimal.ROUND_HALF_UP),
-                kumulatiivinenKorko.setScale(RAHAN_ESITYS_TARKKUUS, BigDecimal.ROUND_HALF_UP),
-                alkuLainaPaaoma.add(kumulatiivinenKorko.setScale(RAHAN_ESITYS_TARKKUUS, BigDecimal.ROUND_HALF_UP))
+                alkuLainaPaaoma.setScale(RAHAN_ESITYS_TARKKUUS_DES, BigDecimal.ROUND_HALF_UP),
+                kumulatiivinenKorko.setScale(RAHAN_ESITYS_TARKKUUS_DES, BigDecimal.ROUND_HALF_UP),
+                alkuLainaPaaoma.add(kumulatiivinenKorko.setScale(RAHAN_ESITYS_TARKKUUS_DES, BigDecimal.ROUND_HALF_UP))
         );
         return suunnitelma;
     }
@@ -76,10 +82,10 @@ public class LainaLaskuriImpl implements LainaLaskuri {
             LainanMaksuEra era = new LainanMaksuEra(
                     UUID.randomUUID(),
                     i + 1,
-                    alkuLainaPaaoma.setScale(RAHAN_ESITYS_TARKKUUS, BigDecimal.ROUND_HALF_UP),
-                    lainapaaomanLyhennys.setScale(RAHAN_ESITYS_TARKKUUS, BigDecimal.ROUND_HALF_UP),
-                    korko.setScale(RAHAN_ESITYS_TARKKUUS, BigDecimal.ROUND_HALF_UP),
-                    tasaEra.setScale(RAHAN_ESITYS_TARKKUUS, BigDecimal.ROUND_HALF_UP),
+                    alkuLainaPaaoma.setScale(RAHAN_ESITYS_TARKKUUS_DES, BigDecimal.ROUND_HALF_UP),
+                    lainapaaomanLyhennys.setScale(RAHAN_ESITYS_TARKKUUS_DES, BigDecimal.ROUND_HALF_UP),
+                    korko.setScale(RAHAN_ESITYS_TARKKUUS_DES, BigDecimal.ROUND_HALF_UP),
+                    tasaEra.setScale(RAHAN_ESITYS_TARKKUUS_DES, BigDecimal.ROUND_HALF_UP),
                     i + 1
             );
             erat.add(era);
@@ -88,9 +94,9 @@ public class LainaLaskuriImpl implements LainaLaskuri {
         LainanMaksuSuunnitelma suunnitelma = new LainanMaksuSuunnitelma(
                 UUID.randomUUID(),
                 erat,
-                alkuLainaPaaoma.setScale(RAHAN_ESITYS_TARKKUUS, BigDecimal.ROUND_HALF_UP),
-                kumulatiivinenKorko.setScale(RAHAN_ESITYS_TARKKUUS, BigDecimal.ROUND_HALF_UP),
-                alkuLainaPaaoma.add(kumulatiivinenKorko.setScale(RAHAN_ESITYS_TARKKUUS, BigDecimal.ROUND_HALF_UP))
+                alkuLainaPaaoma.setScale(RAHAN_ESITYS_TARKKUUS_DES, BigDecimal.ROUND_HALF_UP),
+                kumulatiivinenKorko.setScale(RAHAN_ESITYS_TARKKUUS_DES, BigDecimal.ROUND_HALF_UP),
+                alkuLainaPaaoma.add(kumulatiivinenKorko.setScale(RAHAN_ESITYS_TARKKUUS_DES, BigDecimal.ROUND_HALF_UP))
         );
         return suunnitelma;
     }
@@ -106,6 +112,6 @@ public class LainaLaskuriImpl implements LainaLaskuri {
                 .pow(maksuAikaKuukausina)
                 .subtract(new BigDecimal(1))
         );
-        return (osoittaja.divide(nimittaja, N_DESIMAALIN_TARKKUUS, BigDecimal.ROUND_HALF_UP)).multiply(lainaPaaoma);
+        return (osoittaja.divide(nimittaja, MathContext.DECIMAL64)).multiply(lainaPaaoma);
     }
 }
