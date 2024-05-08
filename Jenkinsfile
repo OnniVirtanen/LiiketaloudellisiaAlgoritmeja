@@ -1,12 +1,8 @@
 pipeline {
-    agent { 
-        node {
-            label 'ec2-cloud'
-            }
-      }
-      triggers {
+    agent any
+    triggers {
         pollSCM 'H/2 * * * *'
-      }
+    }
     stages {
         stage('Build') {
             steps {
