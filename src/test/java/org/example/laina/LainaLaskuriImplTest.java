@@ -66,10 +66,5 @@ class LainaLaskuriImplTest {
         BigDecimal virheMarginaali = new BigDecimal("0.10");
         assertEquals(kokonaisLyhennys.doubleValue(), odotettuLainaPaaoma.doubleValue(), virheMarginaali.doubleValue());
     }
-
-    @Test
-    void breakBuild() {
-        assertEquals(false, true);
-    }
     
 }
