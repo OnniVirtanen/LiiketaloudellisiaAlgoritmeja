@@ -1,11 +1,11 @@
 pipeline {
     agent { 
         node {
-            label 'jenkins-agent-v1'
+            label 'ec2-cloud'
             }
       }
       triggers {
-        pollSCM '*/5 * * * *'
+        pollSCM 'H/2 * * * *'
       }
     stages {
         stage('Build') {
