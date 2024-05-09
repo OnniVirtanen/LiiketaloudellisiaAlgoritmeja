@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        'jenkins-ec2-slave'
-    }
+    agent any
     triggers {
         pollSCM 'H/2 * * * *'
     }
